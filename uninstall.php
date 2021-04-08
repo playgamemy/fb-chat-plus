@@ -19,5 +19,5 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
   die;
 }
 
-delete_option('fbcp_enabled')
+delete_option('fbcp_options')
 ?>
