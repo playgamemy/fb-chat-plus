@@ -24,12 +24,15 @@ Domain Path: /languages/
 
 class FB_Chat_Plus {
   function __construct() {
+    //check if dependency satisfied
     if (!class_exists('Facebook_Messenger_Customer_Chat')){
       add_action( 'admin_notices', array( $this,'display_dependency_error_notice' ));
     }else{
       include( plugin_dir_path( __FILE__ ) . 'options.php' );
+      include( plugin_dir_path( __FILE__ ) . 'metabox.php' );
       add_action( 'wp_enqueue_scripts', array($this,'fbcp_enqueue_scripts'));
     }
+    add_action( 'wp_loaded', array( $this, 'check_chat_disabled' ));
     add_filter( 'plugin_action_links',
       array( $this, 'fbcp_plugin_action_links'), 10, 2 );
     add_filter( 'plugin_row_meta',
@@ -37,6 +40,13 @@ class FB_Chat_Plus {
     add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ));
   }
 
+  function check_chat_disabled(){
+    if (!is_admin()&&get_post_meta(get_queried_object_id(), 'fbcp_disable_chat',true)){
+      error_log('fired');
+      remove_action( 'wp_footer', array('Facebook_Messenger_Customer_Chat','fbmcc_inject_messenger',11 ));
+      remove_action( 'wp_enqueue_scripts', array($this,'fbcp_enqueue_scripts'));
+    }
+  }
   function fbcp_enqueue_scripts(){
     wp_register_script('js_cookie','https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js');
     wp_register_script('fbcp_main_script', plugin_dir_url( __FILE__ ).'script.js',array( 'js_cookie','jquery-effects-shake' ));

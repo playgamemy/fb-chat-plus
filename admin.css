@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.fbcp-admin-column {
+  float: left;
+  padding: 10px;
+}
+
+.fbcp-admin-column-left {
+  width: 75%;
+}
+
+.fbcp-admin-column-right {
+  width: 25%;
+}
+
+.fbcp-web-banner img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+/* Clear floats after the columns */
+.fbcp-admin-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

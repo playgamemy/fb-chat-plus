@@ -1,3 +1,16 @@
+/*
+* Copyright (C) 2020-present, Concentric Digital Pty Ltd.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; version 2 of the License.
+
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*/
+
 //setup variables
 var autoOpen = fbcp_variables["autoOpen"],
   autoOpenConversationEnabled = fbcp_variables["autoOpenConversationEnabled"],
@@ -10,10 +23,9 @@ var autoOpen = fbcp_variables["autoOpen"],
 (function ($) {
   // add listener to openChat button click event
   $(document).ready(function () {
-    $(".fbcp-openChat").click(function (event) {
+    $(".fbcp-open-chat").click(function (event) {
       event.preventDefault();
-      FB.CustomerChat.showDialog();
-      console.log("chat opened");
+      openConversation();
     });
   });
   //add listener
@@ -31,35 +43,27 @@ var autoOpen = fbcp_variables["autoOpen"],
       };
     }
   }
-  if (autoOpen) {
-    //listen to scroll, and if scroll past element with id #fbcp-scoll-to, open the chat window
-    if (autoOpenbyScroll && $("#scroll-to").length) {
-      $(window).scroll(function () {
-        (hT = $("#fbcp-scroll-to").offset().top),
-          (hH = $("#fbcp-scroll-to").outerHeight()),
-          (wH = $(window).height()),
-          (wS = $(this).scrollTop());
-        //check autoOpen condition again
-        if (wS > hT + hH - wH && autoOpen) {
-          openConversation;
-        }
-      });
-    }
+  if (autoOpenbyDelay) {
+    setTimeout(function () {
+      //check autoOpen condition again
+      if (autoOpen) {
+        openConversation();
+      }
+    }, openDelay);
+  }
 
-    if (autoOpenbyDelay) {
-      $(document).ready(function () {
-        FB.Event.subscribe(
-          "customerchat.load",
-          //delay openChat
-          setTimeout(function () {
-            //check autoOpen condition again
-            if (autoOpen) {
-              openConversation();
-            }
-          }, openDelay)
-        );
-      });
-    }
+  //listen to scroll, and if scroll past element with id #fbcp-scoll-to, open the chat window
+  if (autoOpenbyScroll && $("#scroll-to").length) {
+    $(window).scroll(function () {
+      (hT = $("#fbcp-scroll-to").offset().top),
+        (hH = $("#fbcp-scroll-to").outerHeight()),
+        (wH = $(window).height()),
+        (wS = $(this).scrollTop());
+      //check autoOpen condition again
+      if (wS > hT + hH - wH && autoOpen) {
+        openConversation;
+      }
+    });
   }
 
   //openConversation
@@ -74,22 +78,7 @@ var autoOpen = fbcp_variables["autoOpen"],
   //shakeConversation
   shakeConversation = () => {
     setTimeout(function () {
-      jQuery("#fb-root iframe").effect("shake");
+      $("#fb-root iframe").effect("shake");
     }, 500);
   };
-
-  //subscribe to scroll event
-  jQuery(function ($) {
-    $(window).scroll(function () {
-      if ((autoOpenChat == true) & $("#scroll-to").length) {
-        var hT = $("#scroll-to").offset().top,
-          hH = $("#scroll-to").outerHeight(),
-          wH = $(window).height(),
-          wS = $(this).scrollTop();
-        if (wS > hT + hH - wH) {
-          FB.CustomerChat.showDialog();
-        }
-      }
-    });
-  });
 })(jQuery);
