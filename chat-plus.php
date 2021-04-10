@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Chat Plus
-Description: Unofficial Facebook Customer Chat Addon. Added useful functions including disable chat in some pages, css class for CTA button to show chat, auto show chat after delay, shake conversation to get attention, etc.
+Description: Unofficial Addon for Facebook Customer Chat. Added useful functions including disable chat in some pages, css class for CTA button to show chat, auto show chat after delay, shake conversation to get attention, etc.
 Author: Concentric Digital
 Author URI: https://concentricdigital.com.au
 Version: 0.1
@@ -130,7 +130,7 @@ class FB_Chat_Plus {
   }
 
   function fbcp_cta_button_shortcode_cb(){
-    $string = '<a class="fbcp-messenger-logo fbcp-open-chat" href="/"><img src="'.plugin_dir_url(__FILE__).'imgs/Logo_Messenger.png"> Chat with us</a>';
+    $string = '<button class="fbcp-cta-button"><a class="fbcp-messenger-logo fbcp-open-chat" href="/"><img src="'.plugin_dir_url(__FILE__).'imgs/Logo_Messenger.png"> Chat with us</a></button>';
     return $string;
   }
   
