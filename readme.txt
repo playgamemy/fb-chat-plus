@@ -2,10 +2,11 @@
 Contributors: concentricdigital
 Tags: Facebook, Messenger, Customer Care, Chat, Messaging, Chat Plugin, Facebook Messenger
 Requires at least: 3.9
-Tested up to: 5.5.3
-Stable tag: trunk
+Tested up to: 5.7.1
+Stable tag: 0.1
 Requires PHP: 5.2.4
 License: GPLv2
+Donate link: https://www.paypal.com/donate?hosted_button_id=YMA63F7SPY48G
 
 Unofficial Addon for Facebook Customer Chat. Added useful functions including disable chat in some pages, css class for CTA button to show chat, auto show chat after delay, shake conversation to get attention, etc.
 

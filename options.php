@@ -161,7 +161,7 @@ function fbcp_admin_page_contents() {
           ?>
 
         </form>
-        <h5>How to add a CTA button</h5>
+        <h2><u>How to add a CTA button</u></h2>
         <p> Simply add css class "fbcp-open-chat" to the button, conversation will open when clicked</p>
         <p> You can also use shortcode [fbcp-cta-button] to add a "Chat with us" button with messenger logo </p>
         <p> Need help? Check out the <a href=""> FAQ section</a> or submit a ticket in the <a href="">support section</a></p>
