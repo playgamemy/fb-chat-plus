@@ -42,7 +42,7 @@ class FB_Chat_Plus {
   }
 
   function fbcp_enqueue_scripts(){
-    wp_register_script('js_cookie',plugin_dir_url( __FILE__ ).'/scripts/js.cookies.min.js');
+    wp_register_script('js_cookie',plugin_dir_url( __FILE__ ).'scripts/js.cookie.min.js');
     wp_register_script('fbcp_main_script', plugin_dir_url( __FILE__ ).'script.js',array( 'js_cookie','jquery-effects-shake' ));
     wp_enqueue_script('fbcp_main_script');
     $options = get_option( 'fbcp_options' );
