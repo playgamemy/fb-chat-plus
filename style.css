@@ -1,0 +1,22 @@
+/* CTA button */
+.fbcp-messenger-logo img {
+  width: auto;
+  height: auto;
+  max-height: 1em;
+}
+
+.fbcp-cta-button {
+  border: none;
+  border-radius: 3em;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 1em;
+  width: auto;
+  color: #000;
+  background: white;
+}
+
+.fbcp-cta-button:hover {
+  background: #777;
+}
